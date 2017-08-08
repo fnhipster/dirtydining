@@ -2,6 +2,8 @@
 
 Dirty Dining connects Floridian foodies with their local Health Inspectors allowing them to make healthy restaurant choices. Simply put, we put in the map restaurants have committed serious health violations through a responsible rating system while giving them the opportunity to redeem themselves once they pass their next Health inspection.
 
+---
+
 ## Tech Stack
 
 * [React Native](https://facebook.github.io/react-native/docs/getting-started.html) uses the same fundamental UI building blocks as regular iOS and Android apps. You just put those building blocks together using JavaScript and React.
@@ -11,6 +13,8 @@ Dirty Dining connects Floridian foodies with their local Health Inspectors allow
 * [React Native Map by Airbnb](https://github.com/airbnb/react-native-maps) is a Map component for iOS + Android
 
 * [GraphQL](http://graphql.org) is a query language for APIs and a runtime for fulfilling those queries with your existing data.
+
+---
 
 ## Getting Started
 
