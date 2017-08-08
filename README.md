@@ -1,6 +1,6 @@
 # Dirty Dining 💩
 
-Dirty Dining connects Floridians with their local Health Inspectors.
+Dirty Dining connects Floridian foodies with their local Health Inspectors allowing them to make healthy restaurant choices. Simply put, we put in the map restaurants have committed serious health violations through a responsible rating system while giving them the opportunity to redeem themselves once they pass their next Health inspection.
 
 ## Tech Stack
 
