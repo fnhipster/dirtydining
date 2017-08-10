@@ -8,9 +8,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "prop-types": "^15.5.10",
     "react": "16.0.0-alpha.12",
     "react-native": "0.47.1",
-    "react-native-extended-stylesheet": "^0.6.0"
+    "react-native-extended-stylesheet": "^0.6.0",
+    "react-native-maps": "^0.16.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

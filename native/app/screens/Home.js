@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
-import { View, Image } from 'react-native'
 
-import images from '../config/images'
+import { Container } from '../components/Container'
+import { Map } from '../components/Map'
 
 export default class Home extends Component {
+
   render() {
+
     return (
-      <View>
-        <Image source={images.logo} />
-      </View>
+      <Container>
+        <Map />
+      </Container>
     )
+
   }
 }

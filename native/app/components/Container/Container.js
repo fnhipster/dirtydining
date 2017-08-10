@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { View } from 'react-native'
+
 import styles from './styles'
 
-export default class Container extends Component {
+class Container extends Component {
 
   render() {
     const { children } = this.props
@@ -13,5 +15,11 @@ export default class Container extends Component {
       </View>
     )
   }
-  
+
 }
+
+Container.propTypes = {
+  children: PropTypes.node
+}
+
+export default Container
