@@ -67,3 +67,9 @@ To run your app on Android:
 
 The above command will automatically run your app on the iOS Simulator by default. If you want to run the app on an actual physical iOS device, please follow the instructions [here](https://facebook.github.io/react-native/docs/running-on-device.html).
 
+---
+
+## Contributing
+
+To access the Redux Developer Tool, open [http://remotedev.io/local/](http://remotedev.io/local/) while the application is running.
+
