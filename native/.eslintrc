@@ -24,6 +24,8 @@
     "semi": ["warn", "never"]
   },
   "globals": {
-    "it": true
-    }
+    "it": true,
+    "console": true,
+    "navigator": true
+  }
 }
