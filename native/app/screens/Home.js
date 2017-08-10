@@ -32,8 +32,6 @@ Home.propTypes = {
   geolocation: PropTypes.object
 }
 
-// Redux Connect
-
 const mapStateToProps = state => {
   const { geolocation } = state
   return { geolocation }
