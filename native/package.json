@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "NODE_ENV=development node node_modules/react-native/local-cli/cli.js start",
     "pretest": "eslint ./app/**",
     "test": "jest"
   },
@@ -12,7 +12,10 @@
     "react": "16.0.0-alpha.12",
     "react-native": "0.47.1",
     "react-native-extended-stylesheet": "^0.6.0",
-    "react-native-maps": "^0.16.0"
+    "react-native-maps": "^0.16.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
@@ -22,7 +25,8 @@
     "eslint-plugin-react": "^7.1.0",
     "eslint-plugin-react-native": "^3.0.1",
     "jest": "20.0.4",
-    "react-test-renderer": "16.0.0-alpha.12"
+    "react-test-renderer": "16.0.0-alpha.12",
+    "remote-redux-devtools": "^0.5.12"
   },
   "jest": {
     "preset": "react-native"

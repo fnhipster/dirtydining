@@ -10,7 +10,7 @@ class Map extends Component {
     const { region } = this.props
 
     return (
-      <MapView
+      <MapView.Animated
         style={styles.map}
         region={region}
       />

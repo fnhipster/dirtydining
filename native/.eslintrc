@@ -26,6 +26,7 @@
   "globals": {
     "it": true,
     "console": true,
-    "navigator": true
+    "navigator": true,
+    "process": true
   }
 }
