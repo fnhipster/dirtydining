@@ -4,16 +4,20 @@ import { connect } from 'react-redux'
 import MapView from 'react-native-maps'
 
 import { setMapRegion } from '../../actions/map'
-import { watchGeolocation, clearWatchGeolocation, setGeolocation } from '../../actions/geolocation'
+import { watchGeolocation, clearWatchGeolocation } from '../../actions/geolocation'
 
 import styles from './styles'
 
 class Map extends Component {
 
+
   componentDidMount() {
-    const { setGeolocation, watchGeolocation } = this.props
+    const { watchGeolocation, setMapRegion } = this.props
     return watchGeolocation()
-      .then( coords => setGeolocation(coords) )
+      .then(coords => setMapRegion({
+        longitude: coords.longitude,
+        latitude: coords.latitude
+      }))
   }
 
   componentWillUnmount() {
@@ -22,15 +26,15 @@ class Map extends Component {
   }
 
   render() {
-    const { map, geolocation, setMapRegion } = this.props
+    const { map, setMapRegion } = this.props
 
     return (
       <MapView
+        showsUserLocation={true}
         style={styles.map}
         region={map}
         onRegionChangeComplete={setMapRegion}
       >
-         <MapView.Marker coordinate={geolocation} /> 
       </MapView>
     )
   }
@@ -38,7 +42,6 @@ class Map extends Component {
 
 Map.propTypes = {
   setMapRegion: PropTypes.func,
-  setGeolocation: PropTypes.func,
   watchGeolocation: PropTypes.func,
   clearWatchGeolocation: PropTypes.func,
   map: PropTypes.object,
@@ -54,8 +57,7 @@ const mapDispatchToProps = dispatch => {
   return {
     watchGeolocation: () => dispatch(watchGeolocation()),
     clearWatchGeolocation: (watchID) => dispatch(clearWatchGeolocation(watchID)),
-    setMapRegion: coords => dispatch(setMapRegion(coords)),
-    setGeolocation: coords => dispatch(setGeolocation(coords))
+    setMapRegion: (coords) => dispatch(setMapRegion(coords))
   }
 }
 

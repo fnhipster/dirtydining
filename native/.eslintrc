@@ -28,6 +28,7 @@
     "console": true,
     "navigator": true,
     "process": true,
-    "Promise": true
+    "Promise": true,
+    "alert": true
   }
 }

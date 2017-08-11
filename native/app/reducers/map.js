@@ -8,7 +8,6 @@ export default (state = {
 }, action) => {
   switch (action.type) {
     case SET_MAP_REGION:
-      // return Object.assign({}, state, action.payload)
       return {
         ...state,
         ...action.payload
