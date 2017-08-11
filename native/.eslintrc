@@ -27,6 +27,7 @@
     "it": true,
     "console": true,
     "navigator": true,
-    "process": true
+    "process": true,
+    "Promise": true
   }
 }

@@ -1,25 +1,28 @@
 export const SET_GEOLOCATION = 'SET_GEOLOCATION'
-const setGeolocation = payload => ({
+export const setGeolocation = payload => ({
   type: SET_GEOLOCATION,
   payload
 })
 
-export const GET_GEOLOCATION = 'GET_GEOLOCATION'
-export const getGeolocation = () => dispatch => {
-  navigator.geolocation.getCurrentPosition(position => {
+export const WATCH_GEOLOCATION = 'WATCH_GEOLOCATION'
+export const watchGeolocation = () => dispatch => {
 
-    const payload = {
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude,
-      latitudeDelta: 0.00922 * 1.5,
-      longitudeDelta: 0.00421 * 1.5
-    }
-
+  return new Promise((resolve, reject) =>
     dispatch({
-      type: GET_GEOLOCATION
+      type: WATCH_GEOLOCATION,
+      id: navigator.geolocation.watchPosition(
+        position => resolve(position.coords),
+        error => reject(error)
+      )
     })
+  )
 
-    return dispatch(setGeolocation(payload))
-  })
-  
+}
+
+export const CLEAR_WATCH_GEOLOCATION = 'CLEAR_WATCH_GEOLOCATION'
+export const clearWatchGeolocation = (watchID) => dispatch => {
+
+  dispatch({ type: CLEAR_WATCH_GEOLOCATION })
+
+  return navigator.geolocation.watchPosition(watchID)
 }

@@ -1,46 +1,22 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
-import { getGeolocation } from '../actions/geolocation'
 
 import { Container } from '../components/Container'
+import { Header } from '../components/Header'
 import { Map } from '../components/Map'
 
 class Home extends Component {
 
-  componentDidMount() {
-    const { getGeolocation } = this.props
-    getGeolocation()
-  }
-
   render() {
-
-    const { geolocation } = this.props
 
     return (
       <Container>
-        <Map region={geolocation} />
+        <Header />
+        <Map />
       </Container>
     )
 
   }
 }
 
-Home.propTypes = {
-  getGeolocation: PropTypes.func,
-  geolocation: PropTypes.object
-}
 
-const mapStateToProps = state => {
-  const { geolocation } = state
-  return { geolocation }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getGeolocation: () => dispatch(getGeolocation())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default Home
