@@ -19,13 +19,16 @@ export default EStyleSheet.create({
   },
 
   header: {
-    backgroundColor: '$colorWhite',
+    backgroundColor: '$colorLightGray',
+    borderBottomWidth: 1,
+    borderBottomColor: '$colorGray',
     alignItems: 'center',
-    padding: 12,
+    padding: 12
   },
 
   textTitle: {
-    color: '$colorDialogTitle'
+    color: '$colorDialogTitle',
+    fontSize: 13
   },
 
   body: {

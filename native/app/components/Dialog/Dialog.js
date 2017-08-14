@@ -8,7 +8,8 @@ class Dialog extends Component {
 
   state = {
     isOpen: false,
-    fadeAnimation: new Animated.Value(0)
+    fadeAnimation: new Animated.Value(0),
+    scaleAnimation: new Animated.Value(0.3)
   }
 
   componentDidMount() {
@@ -17,35 +18,45 @@ class Dialog extends Component {
 
   open = () => {
     const { onOpen = () => {} } = this.props
-    const { fadeAnimation } = this.state
+    const { fadeAnimation, scaleAnimation } = this.state
 
     return this.setState({ isOpen: true },
-      () => Animated.timing(fadeAnimation, {
-        toValue: 1,
-        duration: 500
-      }).start(onOpen))
+      () => Animated.parallel([
+        Animated.timing(fadeAnimation, { toValue: 1, duration: 300 }),
+        Animated.spring(scaleAnimation, { toValue: 1, tension: 200, friction: 12 })
+      ]).start(onOpen)
+
+    )
   }
 
   close = () => {
     const { onClose = () => {} } = this.props
-    const { fadeAnimation } = this.state
+    const { fadeAnimation, scaleAnimation } = this.state
 
-    return Animated.timing(fadeAnimation, {
-      toValue: 0,
-      duration: 500
-    }).start(() => this.setState({ isOpen: false }, onClose))
+    return Animated.parallel([
+      Animated.timing(fadeAnimation, { toValue: 0, duration: 250 }),
+      Animated.spring(scaleAnimation, { toValue: 0.2, tension: 50, friction: 4 })
+    ]).start(() => this.setState({ isOpen: false }, onClose))
+
   }
 
   render() {
     const { title, children } = this.props
-    const { isOpen, fadeAnimation } = this.state
+    const { isOpen, fadeAnimation, scaleAnimation } = this.state
 
     return isOpen ? (
       <Animated.View style={[
         styles.wrapper,
         { opacity: fadeAnimation }
       ]}>
-        <View style={styles.container}>
+        <Animated.View style={[
+          styles.container,
+          { 
+            transform: [
+              { scale: scaleAnimation } 
+            ]
+          }
+        ]}>
           { title &&
             <View style={styles.header}>
               <Text style={styles.textTitle}>{title}</Text>
@@ -59,7 +70,7 @@ class Dialog extends Component {
               <Text style={styles.textClose}>CLOSE</Text>
             </TouchableOpacity>
           </View>
-      </View>
+      </Animated.View>
      </Animated.View>
     ) : null
   }
