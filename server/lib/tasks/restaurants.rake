@@ -4,7 +4,7 @@ require 'net/ftp'
 namespace :restaurant do 
 	desc "Import restaurant data from dbprftp.state.fl.us"
 	task :import => :environment do 
-	
+
 		1.upto(7) do |file_number|
 			path_to_file =  Rails.root.join("tmp/hrfood#{file_number}.csv").to_s
 			Net::FTP.open("dbprftp.state.fl.us") do |ftp|
@@ -19,7 +19,8 @@ namespace :restaurant do
 
 		1.upto(7) do |file_number|
 			path_to_file =  Rails.root.join("tmp/hrfood#{file_number}.csv").to_s
-			CSV.foreach(Rails.root.join("tmp/file.csv").to_s) do |row|
+			puts path_to_file
+			CSV.foreach(Rails.root.join(path_to_file).to_s) do |row|
 				restaurant = Restaurant.new do |r|
 					r.county_number = row[22]
 					r.license_type_code = row[1]
