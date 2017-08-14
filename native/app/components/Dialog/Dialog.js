@@ -45,10 +45,12 @@ class Dialog extends Component {
     const { isOpen, fadeAnimation, scaleAnimation } = this.state
 
     return isOpen ? (
-      <Animated.View style={[
-        styles.wrapper,
-        { opacity: fadeAnimation }
-      ]}>
+      <Animated.View 
+        style={[
+          styles.wrapper,
+          { opacity: fadeAnimation }
+        ]}
+      >
         <Animated.View style={[
           styles.container,
           { 

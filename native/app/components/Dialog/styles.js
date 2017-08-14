@@ -4,7 +4,7 @@ export default EStyleSheet.create({
 
   wrapper: {
     ...EStyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.65)',
     alignItems: 'center',
     justifyContent: 'center'
   },
