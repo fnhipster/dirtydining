@@ -37,11 +37,11 @@ Description
 
 ## Props
 
-| Props | Type | Default | Note |
-| :--- | :--- | :--- | :--- |
-| title | String |  | You can pass a`DialogTitle`component or pass a`View`for customizing titlebar |
-| `width` | `Number` | Your device width | The Width of Dialog, you can use fixed width or use percentage |
-| `height` | `Number` | 300 | The Width of Dialog, you can use fixed height or use percentage |
+| Prop | Type | Note |
+| :--- | :--- | :--- |
+| title | String | Optional. If not passed, the component will ignore the title. |
+| onOpen | Function | Optional. Callback will be called after the Dialog opens. |
+| onClose | Function | Optional. Call will be called after Dialog closes. |
 
 
 
