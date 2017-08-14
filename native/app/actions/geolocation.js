@@ -1,5 +1,3 @@
-// import Rx from 'rxjs/Rx'
-
 export const SET_GEOLOCATION = 'SET_GEOLOCATION'
 export const setGeolocation = payload => ({
   type: SET_GEOLOCATION,
