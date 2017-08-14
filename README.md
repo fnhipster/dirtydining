@@ -4,10 +4,10 @@ Dirty Dining connects Floridian foodies with their local Health Inspectors allow
 
 ---
 
-1. [Getting Started](/GETTING_STARTED.md)
+1. [Getting Started](/documentation/GETTING_STARTED.md)
 2. [Tech Stack](/documentation/TECH_STACK.md)
 3. [Running the React Native Application](/documentation/RUNNING_THE_APPLICATION.md)
-4. Components
+4. **Components**
    1. [Dialog](/documentation/components/dialog.md)
 
 
