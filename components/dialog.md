@@ -9,6 +9,7 @@ A popup-dialog component
 ```
 <Dialog
     title='Hello, Goodbye'
+    onOpen={() => alert('I say hello')}
     onClose={() => alert('You say goodbye')}
 >
     <Text>Hello, hello...</Text>
