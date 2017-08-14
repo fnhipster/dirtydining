@@ -1,6 +1,6 @@
 # Dialog
 
-Description
+A popup-dialog component
 
 ---
 
