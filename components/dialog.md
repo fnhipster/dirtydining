@@ -20,13 +20,10 @@ A popup-dialog component
 
 ---
 
-## Usage \(without title\)
+## Usage \(without title and callbacks\)
 
 ```
-<Dialog
-    onOpen={() => alert('I say hello')}
-    onClose={() => alert('You say goodbye')}
->
+<Dialog>
     <Text>Hello, hello...</Text>
 </Dialog>
 ```
