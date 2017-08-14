@@ -1,0 +1,17 @@
+version: '3'
+services:
+  db: 
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: dirty
+  web:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile/rails
+    command: puma
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
