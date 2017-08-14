@@ -40,7 +40,5 @@ A popup-dialog component
 | onOpen | Function | Optional. Callback will be called after the Dialog opens. |
 | onClose | Function | Optional. Call will be called after Dialog closes. |
 
-
-
-[Go back to index](#)
+[Go back to index](/README.md)
 
