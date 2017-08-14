@@ -9,7 +9,6 @@ A popup-dialog component
 ```
 <Dialog
     title='Hello, Goodbye'
-    onOpen={() => alert('I say hello')}
     onClose={() => alert('You say goodbye')}
 >
     <Text>Hello, hello...</Text>
@@ -20,10 +19,10 @@ A popup-dialog component
 
 ---
 
-## Usage \(without title and callbacks\)
+## Usage \(without title\)
 
 ```
-<Dialog>
+<Dialog onClose={() => alert('You say goodbye')}>
     <Text>Hello, hello...</Text>
 </Dialog>
 ```
