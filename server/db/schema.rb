@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20170814134059) do
   create_table "restaurants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "county_number"
     t.string "license_type_code", limit: 5
-    t.integer "license_number"
+    t.string "license_number"
     t.string "business_name", limit: 200
     t.string "location_address", limit: 200
     t.string "location_city", limit: 200
