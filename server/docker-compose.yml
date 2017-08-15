@@ -17,3 +17,11 @@ services:
       - "3000:3000"
     depends_on:
       - db
+  elasticsearch:
+    image: elasticsearch:2.4.6
+    ports:
+      - "9200:9200"
+  kibana:
+    image: kibana:4.6.5
+    ports:
+      - "5601:5601"
