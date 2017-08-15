@@ -34,5 +34,18 @@ namespace :restaurant do
 				restaurant.save
 			end
 		end	
-	end	
+	end
+
+	desc "Send to ElasticSearch"
+	task :import_elastic => :environment do 
+		Restaurant.take(10).each do |restaurant|
+			client = Elasticsearch::Client.new host: "elasticsearch", log: true
+			#body = self.as_json
+			body = {}
+			body[:business_name] = restaurant.business_name
+			#body[:location] = { lat: self.lat, lon: self.lng } if !self.lat.nil? && !self.lng.nil?
+			
+			client.index index: 'dining', type: 'restaurants', id: restaurant.id, body: body
+		end
+	end
 end
