@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { Text } from 'react-native'
 
 import { Container } from '../components/Container'
 import { Header } from '../components/Header'
 import { Map } from '../components/Map'
-import { Dialog } from '../components/Dialog'
+import { ViolationDetails } from '../components/ViolationDetails'
 
 class Home extends Component {
 
@@ -14,11 +13,7 @@ class Home extends Component {
       <Container>
         <Header />
         <Map />
-        <Dialog
-          title='Hello, Goodbye'
-          >
-          <Text>Hello, hello...</Text>
-        </Dialog>
+        <ViolationDetails />
       </Container>
     )
 

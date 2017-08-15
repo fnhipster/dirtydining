@@ -29,6 +29,7 @@
     "navigator": true,
     "process": true,
     "Promise": true,
-    "alert": true
+    "alert": true,
+    "fetch": true
   }
 }

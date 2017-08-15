@@ -1,0 +1,1 @@
+export const ENDPOINT_VIOLATIONS = 'https://api.myjson.com/bins/wt195'
