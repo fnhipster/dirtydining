@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(version: 20170814134059) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "inspection_violations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "violation_id"
+    t.integer "violation_count"
+    t.integer "inspection_visit_id"
+    t.index ["inspection_visit_id"], name: "index_inspection_violations_on_inspection_visit_id"
+  end
+
   create_table "inspections", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "inspection_visit_id", limit: 7
     t.string "license_id", limit: 10
@@ -38,29 +45,31 @@ ActiveRecord::Schema.define(version: 20170814134059) do
     t.integer "license_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "inspections_violations", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "inspection_id", null: false
-    t.bigint "violation_id", null: false
-    t.integer "violation_count"
-    t.index ["inspection_id", "violation_id"], name: "index_inspections_violations_on_inspection_id_and_violation_id"
+    t.index ["license_number"], name: "index_inspections_on_license_number"
   end
 
   create_table "restaurants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "county_number"
     t.string "license_type_code", limit: 5
+    t.string "rank_code", limit: 10
     t.string "license_number"
+    t.string "licensee_name", limit: 200
     t.string "business_name", limit: 200
     t.string "location_address", limit: 200
     t.string "location_city", limit: 200
+    t.string "location_state", limit: 2
     t.string "location_zipcode", limit: 10
     t.decimal "location_latitude", precision: 10, scale: 7
     t.decimal "location_longitude", precision: 10, scale: 7
     t.integer "critical_violations_before_2013"
     t.integer "noncritical_violations_before_2013"
+    t.date "expiry_date"
+    t.date "last_inspection_date"
+    t.integer "units"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["license_number"], name: "index_restaurants_on_license_number"
+    t.index ["location_zipcode"], name: "index_restaurants_on_location_zipcode"
   end
 
   create_table "violations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
