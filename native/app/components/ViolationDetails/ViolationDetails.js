@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Text } from 'react-native'
+import { Image, Text } from 'react-native'
 
 import { Dialog } from '../Dialog'
 
 import { selectViolation } from '../../actions/violations'
+
+import styles from './styles'
+
+import images from '../../config/images'
 
 class Map extends Component {
 
@@ -18,7 +22,9 @@ class Map extends Component {
         title={violation.name}
         onClose={onClose}
       >
-        <Text>{violation.description}</Text>
+        
+        <Image style={styles.imageCategory} source={images.categoryTest} />
+        <Text style={styles.textDescription}>{violation.description}</Text>
       </Dialog>
     ) : null
   }

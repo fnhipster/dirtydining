@@ -1,11 +1,16 @@
 import EStyleSheet from 'react-native-extended-stylesheet'
 
 export default EStyleSheet.create({
-  container: {
-    flex: 1
+
+
+  imageCategory: {
+
+    resizeMode: 'contain',
+    height: 400,
+    marginBottom: 10
   },
 
-  map: {
-    flex: 1
+  textDescription: {
+
   }
 })

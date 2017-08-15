@@ -4,9 +4,12 @@ export default EStyleSheet.create({
 
   wrapper: {
     ...EStyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 0, 0, 0.65)',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+
+  blur: {
+    ...EStyleSheet.absoluteFillObject
   },
 
   container: {
@@ -32,7 +35,6 @@ export default EStyleSheet.create({
   },
 
   body: {
-    padding: 12,
     alignItems: 'center',
     justifyContent: 'center'
   },

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Text } from 'react-native'
+import { View, Text } from 'react-native'
 
 import MapView from 'react-native-maps'
 
@@ -31,25 +31,27 @@ class Map extends Component {
     const { map, violations, setMapRegion, selectViolation } = this.props
 
     return (
-      <MapView
-        showsUserLocation={true}
-        style={styles.map}
-        region={map}
-        onRegionChangeComplete={setMapRegion}
-      >
-        { violations.results.map((violation, index) => (
-          <MapView.Marker
-            key={index}
-            coordinate={violation.coords}
-            title={violation.name}
-            onCalloutPress={() => selectViolation(index)}
-          >
-            <MapView.Callout>
-              <Text>💩 {violation.name}</Text>
-            </MapView.Callout>
-          </MapView.Marker>
-        ))}
-      </MapView>
+      <View style={styles.container}>
+        <MapView
+          showsUserLocation={true}
+          style={styles.map}
+          region={map}
+          onRegionChangeComplete={setMapRegion}
+        >
+          { violations.results.map((violation, index) => (
+            <MapView.Marker
+              key={index}
+              coordinate={violation.coords}
+              title={violation.name}
+              onCalloutPress={() => selectViolation(index)}
+            >
+              <MapView.Callout>
+                <Text>💩 {violation.name}</Text>
+              </MapView.Callout>
+            </MapView.Marker>
+          ))}
+        </MapView>
+      </View>
     )
   }
 }
