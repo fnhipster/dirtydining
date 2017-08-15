@@ -48,4 +48,16 @@ namespace :restaurant do
 			client.index index: 'dining', type: 'restaurants', id: restaurant.id, body: body
 		end
 	end
+
+	desc "Update imported restaurant data with gelocated attributes"
+	task :geocode => :environment do
+	    Restaurant.where(location_latitude: nil).where(location_longitude: nil).find_each do |restaurant|
+	        geocoded = Geocoder.coordinates(restaurant.full_address)
+	        restaurant.location_latitude    = geocoded[0]
+	        restaurant.location_longitude   = geocoded[1]
+	        restaurant.save
+	        puts restaurant
+	    end
+	end
+
 end
