@@ -17,6 +17,7 @@ class CreateInspections < ActiveRecord::Migration[5.1]
 		  t.integer :county_number
 		  t.integer :license_number
       t.timestamps
+      t.index :license_number
     end
   end
 end

@@ -7,9 +7,11 @@ class CreateViolations < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    create_join_table :inspections, :violations do |t|
-    	t.integer :violation_count
-    	t.index [:inspection_id, :violation_id]
+    create_table :inspection_violations do |t|
+      t.integer :violation_id
+      t.integer :violation_count
+      t.integer :inspection_visit_id
+    	t.index [:inspection_visit_id]
     end
   end
 end
