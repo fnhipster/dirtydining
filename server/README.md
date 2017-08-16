@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+More documentation coming up later in the meanwhile:
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+docker-compose up
+rails db:create
+rails db:seed
+rails restaurant:download
+rails restaurant:import
+rails restaurant:geocode[zipcode]
+rails inspection:download 
+rails inspection:download_history
+rails inspection:import
+rails inspection:import_history
+rails restaurant:elasticsearch[zipcode]
