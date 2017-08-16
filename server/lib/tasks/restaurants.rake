@@ -63,14 +63,14 @@ namespace :restaurant do
 		end
 	end
 
-	desc "Update imported restaurant data with gelocated attributes"
-	task :geocode => :environment do
-	    Restaurant.where(location_zipcode: "33136").where(location_latitude: nil).where(location_longitude: nil).find_each do |restaurant|
+	desc "Update imported restaurant data with gelocated attributes" #cap restaurant:geocode["33134"]
+	task :geocode , [:zipcode] => :environment do |task_name, parameters|
+	    Restaurant.where(location_zipcode: parameters[:zipcode]).where(location_latitude: nil).where(location_longitude: nil).find_each do |restaurant|
 	        geocoded = Geocoder.coordinates(restaurant.full_address)
 	        restaurant.location_latitude    = geocoded[0]
 	        restaurant.location_longitude   = geocoded[1]
 	        restaurant.save
-	        puts restaurant
+	        puts restaurant.id
 	    end
 	end
 end

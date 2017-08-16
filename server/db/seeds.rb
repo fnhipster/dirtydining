@@ -6,6 +6,20 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+#Elasticsearch Mapping 
+#PUT /code-for-miami
+# {
+#   "mappings": {
+#     "restaurants": {
+#       "properties": {
+#         "location": {
+#           "type": "geo_point"
+#         }
+#       }
+#     }
+#   }
+#}
+
 violations = [
 [1,"Approved source",1,0],
 [2,"Original container: properly labeled, date marking, consumer advisory",1,0],
