@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { TouchableOpacity, Text, View, Animated } from 'react-native'
 import PropTypes from 'prop-types'
 
+import { VibrancyView } from 'react-native-blur'
+
 import styles from './styles'
 
 class Dialog extends Component {
@@ -45,35 +47,40 @@ class Dialog extends Component {
     const { isOpen, fadeAnimation, scaleAnimation } = this.state
 
     return isOpen ? (
-      <Animated.View 
-        style={[
-          styles.wrapper,
-          { opacity: fadeAnimation }
-        ]}
-      >
+        <Animated.View 
+          style={[
+            styles.wrapper,
+            { opacity: fadeAnimation }
+          ]}
+        >
+        
+        <VibrancyView blurType='dark' blurAmount={4} style={styles.blur} />
+            
         <Animated.View style={[
-          styles.container,
-          { 
-            transform: [
-              { scale: scaleAnimation } 
-            ]
-          }
-        ]}>
-          { title &&
-            <View style={styles.header}>
-              <Text style={styles.textTitle}>{title}</Text>
-            </View>
-          }
-          <View style={styles.body}>
-            {children}
-          </View>
-          <View style={styles.footer}>
-            <TouchableOpacity style={styles.buttonClose} onPressOut={this.close}>
-              <Text style={styles.textClose}>CLOSE</Text>
-            </TouchableOpacity>
-          </View>
+              styles.container,
+              { 
+                transform: [
+                  { scale: scaleAnimation } 
+                ]
+              }
+            ]}>
+              { title &&
+                <View style={styles.header}>
+                  <Text style={styles.textTitle}>{title}</Text>
+                </View>
+              }
+              <View style={styles.body}>
+                {children}
+              </View>
+              <View style={styles.footer}>
+                <TouchableOpacity style={styles.buttonClose} onPressOut={this.close}>
+                  <Text style={styles.textClose}>CLOSE</Text>
+                </TouchableOpacity>
+              </View>
+          </Animated.View>
+          
       </Animated.View>
-     </Animated.View>
+     
     ) : null
   }
 }

@@ -1,8 +1,8 @@
-import { SET_MAP_REGION } from '../actions/map'
+import { SET_MAP_REGION } from '../actions/region'
 
 export default (state = {
-  latitude: 25.794624,
-  longitude: -80.206339,
+  latitude: 27.6648,
+  longitude: 81.5158,
   latitudeDelta: 0.011665610472313404,
   longitudeDelta: 0.00804662778280374
 }, action) => {

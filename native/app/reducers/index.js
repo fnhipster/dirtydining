@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 
 import geolocation from './geolocation'
-import map from './map'
+import region from './region'
+import violations from './violations'
 
 export default combineReducers({
   geolocation,
-  map
+  region,
+  violations
 })
