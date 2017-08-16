@@ -50,21 +50,15 @@ namespace :restaurant do
 		end	
 	end
 
-	desc "Send to ElasticSearch"
-	task :import_elastic => :environment do 
-		Restaurant.where(location_zipcode: "33136").each do |restaurant|
-			client = Elasticsearch::Client.new host: "elasticsearch", log: true
-			#body = self.as_json
-			body = {}
-			body[:business_name] = restaurant.business_name
-			body[:location] = { lat: restaurant.location_latitude, lon: restaurant.location_longitude } if !restaurant.location_latitude.nil? && !restaurant.location_longitude.nil?
-			
-			client.index index: 'dining', type: 'restaurants', id: restaurant.id, body: body
+	desc "Send to ElasticSearch" #cap restaurant:elasticsearch["33134"]
+	task :elasticsearch, [:zipcode] => :environment do |task_name, parameters|
+		Restaurant.where(location_zipcode: parameters[:zipcode]).each do |restaurant|
+			restaurant.send_to_elasticsearch
 		end
 	end
 
 	desc "Update imported restaurant data with gelocated attributes" #cap restaurant:geocode["33134"]
-	task :geocode , [:zipcode] => :environment do |task_name, parameters|
+	task :geocode, [:zipcode] => :environment do |task_name, parameters|
 	    Restaurant.where(location_zipcode: parameters[:zipcode]).where(location_latitude: nil).where(location_longitude: nil).find_each do |restaurant|
 	        geocoded = Geocoder.coordinates(restaurant.full_address)
 	        restaurant.location_latitude    = geocoded[0]

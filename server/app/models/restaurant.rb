@@ -4,7 +4,7 @@ class Restaurant < ApplicationRecord
 		"#{self.location_address}, #{self.location_city} #{self.location_state}, #{self.location_zipcode}"
   end
 
-  def send_to_elastic
+  def send_to_elasticsearch
   	client = Elasticsearch::Client.new host: "elasticsearch", log: true
 
   	body = self.as_json include: {inspections: {include: :violations}}
