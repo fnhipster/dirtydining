@@ -5,45 +5,68 @@ import { View, Text } from 'react-native'
 
 import MapView from 'react-native-maps'
 
-import { requestViolations, selectViolation  } from '../../actions/violations'
-import { setMapRegion } from '../../actions/map'
 import { watchGeolocation, clearWatchGeolocation } from '../../actions/geolocation'
+import { setMapRegion } from '../../actions/region'
+import { requestViolations, selectViolation } from '../../actions/violations'
 
 import styles from './styles'
 
 class Map extends Component {
-  
-  componentDidMount() {
-    const { watchGeolocation, setMapRegion } = this.props
-    return watchGeolocation()
-      .then(coords => setMapRegion({
+
+  onMapReady = () => {
+    const { onWatchGeolocation, onUpdateRegion } = this.props
+
+    return onWatchGeolocation()
+      .then(coords => onUpdateRegion({
         longitude: coords.longitude,
         latitude: coords.latitude
       }))
   }
 
   componentWillUnmount() {
-    const { geolocation, clearWatchGeolocation } = this.props
-    if (geolocation.watcher) clearWatchGeolocation(geolocation.watcher)
+    const { geolocation, onClearWatchGeolocation } = this.props
+
+    if (geolocation.watcher) onClearWatchGeolocation(geolocation.watcher)
   }
 
   render() {
-    const { map, violations, setMapRegion, selectViolation } = this.props
+    const { violations, region, onUpdateRegion, onSelectViolation } = this.props
 
     return (
       <View style={styles.container}>
         <MapView
+          onMapReady={this.onMapReady}
+          region={region}
+          cacheEnabled={false}
+          followsUserLocation={false} // iOS only
+          liteMode={false} // Android only
+          loadingEnabled={true}
+          maxZoomLevel={20}
+          minZoomLevel={10}
+          moveOnMarkerPress={true} // Android only
+          onRegionChangeComplete={onUpdateRegion}
+          pitchEnabled={false}
+          rotateEnabled={true}
+          scrollEnabled={true}
+          showsBuildings={true}
+          showsCompass={false}
+          showsIndoorLevelPicker={false}
+          showsIndoors={true}
+          showsMyLocationButton={false}
+          showsPointsOfInterest={true}
+          showsScale={false}
+          showsTraffic={false}
           showsUserLocation={true}
           style={styles.map}
-          region={map}
-          onRegionChangeComplete={setMapRegion}
+          toolbarEnabled={false} // Android only
+          zoomEnabled={true}
         >
           { violations.results.map((violation, index) => (
             <MapView.Marker
               key={index}
               coordinate={violation.coords}
               title={violation.name}
-              onCalloutPress={() => selectViolation(index)}
+              onCalloutPress={() => onSelectViolation(index)}
             >
               <MapView.Callout>
                 <Text>💩 {violation.name}</Text>
@@ -57,26 +80,29 @@ class Map extends Component {
 }
 
 Map.propTypes = {
-  setMapRegion: PropTypes.func,
-  watchGeolocation: PropTypes.func,
-  clearWatchGeolocation: PropTypes.func,
-  selectViolation: PropTypes.func,
-  map: PropTypes.object,
+  onWatchGeolocation: PropTypes.func,
+  onClearWatchGeolocation: PropTypes.func,
+  onSelectViolation: PropTypes.func,
+  onUpdateRegion: PropTypes.func,
+  violations: PropTypes.object,
+  region: PropTypes.object,
   geolocation: PropTypes.object,
-  violations: PropTypes.object
 }
 
 const mapStateToProps = state => {
-  const { geolocation, map, violations } = state
-  return { geolocation, map, violations }
+  const { region, violations } = state
+  return { region, violations }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    watchGeolocation: () => dispatch(watchGeolocation()),
-    clearWatchGeolocation: (watchID) => dispatch(clearWatchGeolocation(watchID)),
-    setMapRegion: (coords) => dispatch(setMapRegion(coords)) && dispatch(requestViolations(coords)),
-    selectViolation: (id) => dispatch(selectViolation(id))
+    onWatchGeolocation: () => dispatch(watchGeolocation()),
+    onClearWatchGeolocation: (id) => dispatch(clearWatchGeolocation(id)),
+    onUpdateRegion: (coords) => {
+      dispatch(setMapRegion(coords))
+      dispatch(requestViolations(coords))
+    },
+    onSelectViolation: (id) => dispatch(selectViolation(id))
   }
 }
 

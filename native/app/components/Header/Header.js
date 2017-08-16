@@ -3,7 +3,7 @@ import { View, Button } from 'react-native'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { setMapRegion } from '../../actions/map'
+import { setMapRegion } from '../../actions/region'
 
 import styles from './styles'
 
@@ -46,7 +46,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setMapRegion: region => dispatch(setMapRegion(region))
+    setMapRegion: region => {
+      dispatch(setMapRegion(region))
+    }
   }
 }
 

@@ -28,7 +28,7 @@ export const watchGeolocation = () => dispatch => {
 }
 
 export const CLEAR_WATCH_GEOLOCATION = 'CLEAR_WATCH_GEOLOCATION'
-export const clearWatchGeolocation = (watchID) => dispatch => {
+export const clearWatchGeolocation = (id) => dispatch => {
   dispatch({ type: CLEAR_WATCH_GEOLOCATION })
-  return navigator.geolocation.clearWatch(watchID)
+  return navigator.geolocation.clearWatch(id)
 }

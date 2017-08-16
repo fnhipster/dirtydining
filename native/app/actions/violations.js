@@ -13,11 +13,11 @@ export const selectViolation = id => ({
 })
 
 export const REQUEST_VIOLATIONS = 'REQUEST_VIOLATIONS'
-export const requestViolations = coords => dispatch => {
+export const requestViolations = data => dispatch => {
 
   dispatch({
     type: REQUEST_VIOLATIONS,
-    coords
+    data
   })
 
   fetch(ENDPOINT_VIOLATIONS, {
@@ -26,10 +26,7 @@ export const requestViolations = coords => dispatch => {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      data: {
-        latitude: coords.latitude,
-        longitude: coords.longitude,
-      }
+      data
     })
     .then((response) => response.json())
     .then((responseJson) => {

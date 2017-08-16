@@ -4,10 +4,7 @@ import {
   CLEAR_WATCH_GEOLOCATION
 } from '../actions/geolocation'
 
-export default (state = {
-  latitude: 25.794624,
-  longitude: -80.206339,
-}, action) => {
+export default (state = null, action) => {
   switch (action.type) {
     case WATCH_GEOLOCATION:
       return {
