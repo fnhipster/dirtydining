@@ -6,6 +6,10 @@ import styles from './styles'
 
 class Container extends Component {
 
+  static propTypes = {
+    children: PropTypes.node
+  }
+
   render() {
     const { children } = this.props
 
@@ -16,10 +20,6 @@ class Container extends Component {
     )
   }
 
-}
-
-Container.propTypes = {
-  children: PropTypes.node
 }
 
 export default Container

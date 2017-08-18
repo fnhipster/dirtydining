@@ -9,9 +9,14 @@ import styles from './styles'
 
 class Header extends Component {
 
+  static propTypes = {
+    setMapRegion: PropTypes.func,
+    geolocation: PropTypes.object
+  }
+
   handlePressGetLocation = () => {
     const { geolocation, setMapRegion } = this.props
-    
+
     return setMapRegion({
       latitude: geolocation.latitude,
       longitude: geolocation.longitude
@@ -32,11 +37,6 @@ class Header extends Component {
     )
   }
 
-}
-
-Header.propTypes = {
-  setMapRegion: PropTypes.func,
-  geolocation: PropTypes.object
 }
 
 const mapStateToProps = state => {

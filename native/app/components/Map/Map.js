@@ -13,7 +13,17 @@ import styles from './styles'
 
 class Map extends Component {
 
-  onMapReady = () => {
+  static propTypes = {
+    onWatchGeolocation: PropTypes.func,
+    onClearWatchGeolocation: PropTypes.func,
+    onSelectViolation: PropTypes.func,
+    onUpdateRegion: PropTypes.func,
+    violations: PropTypes.array,
+    region: PropTypes.object,
+    geolocation: PropTypes.object,
+  }
+
+  componentDidMount() {
     const { onWatchGeolocation, onUpdateRegion } = this.props
 
     return onWatchGeolocation()
@@ -35,7 +45,6 @@ class Map extends Component {
     return (
       <View style={styles.container}>
         <MapView
-          onMapReady={this.onMapReady}
           region={region}
           cacheEnabled={false}
           followsUserLocation={false} // iOS only
@@ -79,15 +88,6 @@ class Map extends Component {
   }
 }
 
-Map.propTypes = {
-  onWatchGeolocation: PropTypes.func,
-  onClearWatchGeolocation: PropTypes.func,
-  onSelectViolation: PropTypes.func,
-  onUpdateRegion: PropTypes.func,
-  violations: PropTypes.object,
-  region: PropTypes.object,
-  geolocation: PropTypes.object,
-}
 
 const mapStateToProps = state => {
   const { region, violations } = state
@@ -106,4 +106,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
+
 export default connect(mapStateToProps, mapDispatchToProps)(Map)
+
+

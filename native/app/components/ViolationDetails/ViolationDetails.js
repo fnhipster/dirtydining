@@ -13,6 +13,11 @@ import images from '../../config/images'
 
 class Map extends Component {
 
+  static propTypes = {
+    violations: PropTypes.object,
+    onClose: PropTypes.func
+  }
+
   render() {
     const { violations, onClose } = this.props
     const violation = violations.results[violations.selectedIndex]
@@ -28,11 +33,6 @@ class Map extends Component {
       </Dialog>
     ) : null
   }
-}
-
-Map.propTypes = {
-  violations: PropTypes.object,
-  onClose: PropTypes.func,
 }
 
 const mapStateToProps = state => {

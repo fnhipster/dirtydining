@@ -8,6 +8,14 @@ import styles from './styles'
 
 class Dialog extends Component {
 
+  static propTypes = {
+    isOpen: PropTypes.bool,
+    title: PropTypes.string,
+    children: PropTypes.node,
+    onOpen: PropTypes.func,
+    onClose: PropTypes.func
+  }
+
   state = {
     isOpen: false,
     fadeAnimation: new Animated.Value(0),
@@ -47,7 +55,7 @@ class Dialog extends Component {
     const { isOpen, fadeAnimation, scaleAnimation } = this.state
 
     return isOpen ? (
-        <Animated.View 
+      <Animated.View 
           style={[
             styles.wrapper,
             { opacity: fadeAnimation }
@@ -80,17 +88,9 @@ class Dialog extends Component {
           </Animated.View>
           
       </Animated.View>
-     
+
     ) : null
   }
-}
-
-Dialog.propTypes = {
-  isOpen: PropTypes.bool,
-  title: PropTypes.string,
-  children: PropTypes.node,
-  onOpen: PropTypes.func,
-  onClose: PropTypes.func
 }
 
 export default Dialog

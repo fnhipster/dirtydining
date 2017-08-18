@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'remote-redux-devtools'
 
@@ -11,6 +11,6 @@ export default createStore(
   // preloadedState,
   process.env.NODE_ENV === 'development'
     ? composeWithDevTools({ realtime: true })(middleware)
-    : middleware
+    : compose(middleware)
 )
 
