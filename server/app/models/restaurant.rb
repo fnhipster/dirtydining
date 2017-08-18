@@ -1,5 +1,6 @@
 class Restaurant < ApplicationRecord
   has_many :inspections, foreign_key: :license_number, primary_key: :license_number
+  
   def full_address
 		"#{self.location_address}, #{self.location_city} #{self.location_state}, #{self.location_zipcode}"
   end

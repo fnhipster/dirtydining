@@ -1,5 +1,5 @@
 Types::MutationType = GraphQL::ObjectType.define do
   name "Mutation"
 
-  # TODO: Add Mutations as fields
+  field :createRestaurant, function: Resolvers::CreateRestaurant.new
 end
