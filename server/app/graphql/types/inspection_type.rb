@@ -10,4 +10,5 @@ Types::InspectionType = GraphQL::ObjectType.define do
 	field :intermediate_violations, !types.Int
 	field :basic_violations, !types.Int
 	field :restaurant, -> { Types::RestaurantType }
+	field :violations, -> { types[Types::ViolationType] }
 end
