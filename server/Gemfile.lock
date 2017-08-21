@@ -59,6 +59,7 @@ GEM
     geocoder (1.4.4)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    graphql (1.6.7)
     i18n (0.8.6)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
@@ -143,6 +144,7 @@ DEPENDENCIES
   byebug
   elasticsearch (~> 2.0)
   geocoder
+  graphql (~> 1.6, >= 1.6.7)
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
   mysql2 (>= 0.3.18, < 0.5)
