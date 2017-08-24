@@ -3,7 +3,7 @@ import { View, Button } from 'react-native'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { setMapRegion } from '../../actions/region'
+import { setMapRegion } from '../../actions/map'
 
 import styles from './styles'
 

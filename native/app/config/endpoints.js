@@ -1,1 +1,1 @@
-export const ENDPOINT_VIOLATIONS = 'https://api.myjson.com/bins/wt195'
+export const ENDPOINT_GRAPHQL = 'http://localhost:3000/graphql'

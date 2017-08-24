@@ -1,7 +1,8 @@
 {
   "plugins": [
     "react",
-    "react-native"
+    "react-native",
+    "graphql"
   ],
   "extends": [
     "eslint:recommended",
