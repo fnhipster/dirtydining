@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { StatusBar } from 'react-native'
-import { Provider } from 'react-redux'
+import { ApolloProvider } from 'react-apollo'
 
+import client from './config/client'
 import store from './config/store'
 import styles from './config/styles'
 
@@ -15,12 +16,12 @@ EStyleSheet.build(styles)
 export default class DirtyDining extends Component {
   render() {
     return (
-      <Provider store={store}>
+      <ApolloProvider client={client} store={store}>
         <Container>
           <StatusBar translucent={true} barStyle="light-content" />
           <Home /> 
         </Container>
-      </Provider>
+      </ApolloProvider>
     )
   }
 }

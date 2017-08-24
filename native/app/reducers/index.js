@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 
+import client from '../config/client'
 import geolocation from './geolocation'
-import region from './region'
-import violations from './violations'
+import map from './map'
 
 export default combineReducers({
   geolocation,
-  region,
-  violations
+  map,
+  apollo: client.reducer()
 })

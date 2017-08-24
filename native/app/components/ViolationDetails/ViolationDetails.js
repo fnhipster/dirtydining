@@ -1,49 +1,49 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import { graphql } from 'react-apollo'
 import { Image, Text } from 'react-native'
 
 import { Dialog } from '../Dialog'
 
-import { selectViolation } from '../../actions/violations'
+import { QUERY_GET_RESTAURANT } from '../../config/queries'
 
 import styles from './styles'
 
 import images from '../../config/images'
 
-class Map extends Component {
+const ViolationDetails = ({ data: { restaurant, loading, error }, onClose }) => {
+  
+  if ( loading ) return null
+  
+  else if (error) return(
+    <Dialog title="I made a boo-boo" onClose={onClose}>
+      <Text>There was an issue getting the information. Please try again.</Text>
+    </Dialog>
+  )
 
-  render() {
-    const { violations, onClose } = this.props
-    const violation = violations.results[violations.selectedIndex]
+  else return (
+    <Dialog
+      title={restaurant.business_name}
+      onClose={onClose}
+    >
+      <Image style={styles.imageCategory} source={images.categoryTest} />
+    </Dialog>
+  )
 
-    return violation ? (
-      <Dialog
-        title={violation.name}
-        onClose={onClose}
-      >
-        
-        <Image style={styles.imageCategory} source={images.categoryTest} />
-        <Text style={styles.textDescription}>{violation.description}</Text>
-      </Dialog>
-    ) : null
-  }
 }
 
-Map.propTypes = {
-  violations: PropTypes.object,
-  onClose: PropTypes.func,
+
+ViolationDetails.propTypes = {
+  data: PropTypes.shape({
+    restaurant: PropTypes.object,
+    loading: PropTypes.bool.isRequired,
+    error: PropTypes.object
+  }),
+  onClose: PropTypes.func
 }
 
-const mapStateToProps = state => {
-  const { violations } = state
-  return { violations }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onClose: () => dispatch(selectViolation(null))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Map)
+export default graphql(QUERY_GET_RESTAURANT, {
+  options: ({ id }) => ({
+    variables: { id }
+  })
+})(ViolationDetails)
