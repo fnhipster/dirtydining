@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { View, Text } from 'react-native'
@@ -10,7 +10,7 @@ import { QUERY_GET_RESTAURANTS } from '../../config/queries'
 import styles from './styles'
 
 const Map = ({
-  data: { restaurants, loading, error },
+  data: { restaurants, error },
   onRegionChangeComplete,
   onCalloutPress,
   region
@@ -55,7 +55,6 @@ const Map = ({
               latitude: restaurant.location_latitude,
               longitude: restaurant.location_longitude
             }}
-            title={restaurant.business_name}
             onCalloutPress={() => onCalloutPress(restaurant.id)}
           >
             <MapView.Callout>
@@ -72,11 +71,11 @@ const Map = ({
 Map.propTypes = {
   data: PropTypes.shape({
     restaurants: PropTypes.array,
-    loading: PropTypes.bool.isRequired,
+    loading: PropTypes.bool,
     error: PropTypes.object
   }),
-  region: PropTypes.object,
-  onCalloutPress: PropTypes.func,
+  region: PropTypes.object.isRequired,
+onCalloutPress: PropTypes.func,
   onRegionChangeComplete: PropTypes.func,
 }
 

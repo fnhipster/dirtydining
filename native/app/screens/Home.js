@@ -56,6 +56,7 @@ class Home extends Component {
           onRegionChangeComplete={onRegionChangeComplete}
           onCalloutPress={onCalloutPress}
         />
+        
 
         { map.selected && 
           <ViolationDetails 

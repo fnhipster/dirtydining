@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { StatusBar } from 'react-native'
 import { ApolloProvider } from 'react-apollo'
@@ -13,15 +13,13 @@ import Home from './screens/Home'
 
 EStyleSheet.build(styles)
 
-export default class DirtyDining extends Component {
-  render() {
-    return (
-      <ApolloProvider client={client} store={store}>
-        <Container>
-          <StatusBar translucent={true} barStyle="light-content" />
-          <Home /> 
-        </Container>
-      </ApolloProvider>
-    )
-  }
-}
+const DirtyDining = () => (
+  <ApolloProvider client={client} store={store}>
+    <Container>
+      <StatusBar translucent={true} barStyle="light-content" />
+      <Home /> 
+    </Container>
+  </ApolloProvider>
+)
+
+export default DirtyDining
