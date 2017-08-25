@@ -3,8 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "devtools": "react-devtools",
     "start": "NODE_ENV=development node node_modules/react-native/local-cli/cli.js start",
-    "pretest": "eslint ./app/**",
+    "eslint": "eslint ./app/**",
+    "pretest": "npm run eslint",
     "test": "jest"
   },
   "dependencies": {
@@ -28,6 +30,7 @@
     "eslint-plugin-react": "^7.1.0",
     "eslint-plugin-react-native": "^3.0.1",
     "jest": "20.0.4",
+    "react-devtools": "^2.5.0",
     "react-test-renderer": "16.0.0-alpha.12",
     "remote-redux-devtools": "^0.5.12"
   },
