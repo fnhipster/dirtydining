@@ -18,8 +18,12 @@ Types::QueryType = GraphQL::ObjectType.define do
     description "Find Restaurants by Latitude and Longitude"
     resolve ->(obj, args, ctx) {
       results = Restaurant.find_by_geolocation(args[:lat], args[:lon])
-      ids = results['hits']['hits'].pluck("_id")
-      Restaurant.where(id: ids).order("field(id, " + ids.join(",") + ")")
+      if results['hits']['total'] > 0
+        ids = results['hits']['hits'].pluck("_id")
+        Restaurant.where(id: ids).order("field(id, " + ids.join(",") + ")")
+      else
+        []
+      end
     }
   end
 end
