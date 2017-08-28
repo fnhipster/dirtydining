@@ -1,8 +1,13 @@
 class Restaurant < ApplicationRecord
   has_many :inspections, foreign_key: :license_number, primary_key: :license_number
-  
+  geocoded_by :full_address, latitude: :location_latitude, longitude: :location_longitude 
+
   def full_address
-		"#{self.location_address}, #{self.location_city} #{self.location_state}, #{self.location_zipcode}"
+    [location_address, location_city, location_state, location_zipcode].compact.join(', ')
+  end
+
+  def location_address
+    super.strip
   end
 
   def send_to_elasticsearch
