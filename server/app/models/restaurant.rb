@@ -40,12 +40,12 @@ class Restaurant < ApplicationRecord
           json.filter do 
             json.geo_bounding_box do 
               json.location do 
-                json.top_left do 
+                json.top_right do 
                   json.lat north_latitude
                   json.lon north_longitude
                 end
 
-                json.bottom_right do 
+                json.bottom_left do 
                   json.lat south_latitude
                   json.lon south_longitude
                 end
