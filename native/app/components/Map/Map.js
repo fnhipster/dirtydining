@@ -20,6 +20,7 @@ const Map = ({
   if (error) alert(error)
 
   // else if (!restaurants) return null
+
   
   return (
     <View style={styles.container}>
@@ -84,10 +85,7 @@ Map.propTypes = {
 
 
 export default graphql(QUERY_GET_RESTAURANTS, {
-  options: ({ region: { latitude, longitude } }) => ({
-    variables: {
-      lat: latitude,
-      lon: longitude
-    }
+  options: ({ region }) => ({
+    variables: { ...region }
   })
 })(Map)
