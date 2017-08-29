@@ -31,6 +31,7 @@
     "process": true,
     "Promise": true,
     "alert": true,
-    "fetch": true
+    "clearTimeout": true,
+    "setTimeout": true
   }
 }
