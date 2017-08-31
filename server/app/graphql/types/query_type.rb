@@ -13,13 +13,19 @@ Types::QueryType = GraphQL::ObjectType.define do
   end
 
   field :restaurants, !types[Types::RestaurantType] do 
-    argument :lat, !types.Float
-    argument :lon, !types.Float
+    argument :latitude, !types.Float
+    argument :longitude, !types.Float
+    argument :latitudeDelta, !types.Float 
+    argument :longitudeDelta, !types.Float 
     description "Find Restaurants by Latitude and Longitude"
     resolve ->(obj, args, ctx) {
-      results = Restaurant.find_by_geolocation(args[:lat], args[:lon])
-      ids = results['hits']['hits'].pluck("_id")
-      Restaurant.where(id: ids).order("field(id, " + ids.join(",") + ")")
+      results = Restaurant.find_by_geolocation(args[:latitude], args[:longitude], args[:latitudeDelta], args[:longitudeDelta])
+      if results['hits']['total'] > 0
+        ids = results['hits']['hits'].pluck("_id")
+        Restaurant.where(id: ids).order("field(id, " + ids.join(",") + ")")
+      else
+        []
+      end
     }
   end
 end

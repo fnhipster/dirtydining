@@ -1,8 +1,8 @@
 import { gql } from 'react-apollo'
 
 export const QUERY_GET_RESTAURANTS = gql`
-  query restaurantsByLocation($lat: Float!, $lon: Float!) {
-    restaurants(lat: $lat, lon: $lon) {
+  query restaurantsByLocation($latitude: Float!, $longitude: Float!, $latitudeDelta: Float!, $longitudeDelta: Float!) {
+    restaurants(latitude: $latitude, longitude: $longitude, latitudeDelta: $latitudeDelta, longitudeDelta: $longitudeDelta) {
       id,
       business_name,
       location_latitude,

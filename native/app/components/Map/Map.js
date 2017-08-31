@@ -11,19 +11,21 @@ import styles from './styles'
 
 const Map = ({
   data: { restaurants, error },
+  onRegionChange,
   onRegionChangeComplete,
   onCalloutPress,
-  region
+  map
 }) => {
 
-  if (error) return null
+  if (error) alert(error)
 
-  else if (!restaurants) return null
+  // else if (!restaurants) return null
+
   
   return (
     <View style={styles.container}>
       <MapView
-        region={region}
+        region={map}
         cacheEnabled={false}
         followsUserLocation={false} // iOS only
         liteMode={false} // Android only
@@ -31,6 +33,7 @@ const Map = ({
         maxZoomLevel={20}
         minZoomLevel={10}
         moveOnMarkerPress={true} // Android only
+        onRegionChange={onRegionChange}
         onRegionChangeComplete={onRegionChangeComplete}
         pitchEnabled={false}
         rotateEnabled={true}
@@ -48,7 +51,7 @@ const Map = ({
         toolbarEnabled={false} // Android only
         zoomEnabled={true}
       >
-        { restaurants.map((restaurant, index) => (
+        { restaurants && restaurants.map((restaurant, index) => (
           <MapView.Marker
             key={index}
             coordinate={{
@@ -74,17 +77,15 @@ Map.propTypes = {
     loading: PropTypes.bool,
     error: PropTypes.object
   }),
-  region: PropTypes.object.isRequired,
-onCalloutPress: PropTypes.func,
-  onRegionChangeComplete: PropTypes.func,
+  map: PropTypes.object.isRequired,
+  onCalloutPress: PropTypes.func,
+  onRegionChange: PropTypes.func,
+  onRegionChangeComplete: PropTypes.func
 }
 
 
 export default graphql(QUERY_GET_RESTAURANTS, {
   options: ({ region }) => ({
-    variables: {
-      lat: region.latitude,
-      lon: region.longitude
-    }
+    variables: { ...region }
   })
 })(Map)

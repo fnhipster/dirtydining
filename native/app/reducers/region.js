@@ -1,6 +1,6 @@
-import { 
-  SET_MAP_REGION
- } from '../actions/map'
+import {
+  SET_REGION
+} from '../actions/region'
 
 export default (state = {
   latitude: 25.750409,
@@ -9,7 +9,7 @@ export default (state = {
   longitudeDelta: 0.00804662778280374
 }, action) => {
   switch (action.type) {
-    case SET_MAP_REGION:
+    case SET_REGION:
       return {
         ...state,
         ...action.payload
