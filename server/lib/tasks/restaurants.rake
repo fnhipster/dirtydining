@@ -61,10 +61,19 @@ namespace :restaurant do
 	task :geocode, [:zipcode] => :environment do |task_name, parameters|
 	    Restaurant.where(location_zipcode: parameters[:zipcode]).where(location_latitude: nil).where(location_longitude: nil).find_each do |restaurant|
 	        geocoded = Geocoder.coordinates(restaurant.full_address)
-	        restaurant.location_latitude    = geocoded[0]
-	        restaurant.location_longitude   = geocoded[1]
-	        restaurant.save
-	        puts restaurant.id
+	        if !geocoded.nil?
+		        restaurant.location_latitude    = geocoded[0]
+		        restaurant.location_longitude   = geocoded[1]
+		        restaurant.save
+		        puts restaurant.id
+		      end
 	    end
 	end
+
+	desc "Create Geocoding jobs for Restaurants"
+	task :geocode_jobs => :environment do |task_name, parameters|
+		Restaurant.to_geocode.find_each do |restaurant|
+			GeocodingWorker.perform_async(restaurant.id)
+		end
+	end 
 end
