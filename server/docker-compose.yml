@@ -27,3 +27,11 @@ services:
       dockerfile: ./Dockerfile/kibana
     ports:
       - "5601:5601"
+  redis:
+    image: redis:3.2.10
+  sidekiq:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile/sidekiq
+    volumes:
+      - .:/usr/src/app
