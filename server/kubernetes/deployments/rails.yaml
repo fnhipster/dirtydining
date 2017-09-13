@@ -1,0 +1,21 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: rails
+spec:
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: rails
+    spec:
+      containers:
+      - name: rails
+        image: rails:v2
+        ports: 
+        - containerPort: 3000
+        env:
+        - name: MYSQL_HOST
+          value: mysql.default.svc.cluster.local
+        - name: REDIS_HOST
+          value: redis.default.svc.cluster.local
