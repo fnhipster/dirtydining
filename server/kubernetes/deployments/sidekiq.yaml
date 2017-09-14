@@ -1,0 +1,19 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: sidekiq
+spec:
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: sidekiq
+    spec:
+      containers:
+      - name: sidekiq
+        image: sidekiq:v1
+        env:
+        - name: MYSQL_HOST
+          value: mysql.default.svc.cluster.local
+        - name: REDIS_HOST
+          value: redis.default.svc.cluster.local
