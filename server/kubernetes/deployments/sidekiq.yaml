@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: sidekiq
-        image: sidekiq:v1
+        image: gcr.io/dirty-dining/sidekiq:v1
         env:
         - name: MYSQL_HOST
           value: mysql.default.svc.cluster.local

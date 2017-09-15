@@ -11,6 +11,6 @@ spec:
     spec:
       containers:
       - name: kibana
-        image: kibana:v1
+        image: gcr.io/dirty-dining/kibana:v1
         ports: 
         - containerPort: 5601
