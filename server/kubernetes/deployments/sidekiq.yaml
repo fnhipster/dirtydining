@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: sidekiq
 spec:
-  replicas: 4
+  replicas: 5
   template:
     metadata:
       labels:
@@ -11,9 +11,24 @@ spec:
     spec:
       containers:
       - name: sidekiq
-        image: gcr.io/dirty-dining/sidekiq:v1
+        image: gcr.io/dirty-dining/sidekiq:v3
         env:
+        - name: APP_DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef: 
+              name: dirty-dining
+              key: db_password
+        - name: GOOGLE_MAPS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: dirty-dining
+              key: google_maps_key
+        - name: SECRET_KEY_BASE
+          valueFrom:
+            secretKeyRef:
+              name: dirty-dining
+              key: secret_key_base
         - name: MYSQL_HOST
           value: mysql.default.svc.cluster.local
-        - name: REDIS_HOST
-          value: redis.default.svc.cluster.local
+        - name: RAILS_ENV
+          value: production
