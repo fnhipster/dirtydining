@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: rails
-        image: gcr.io/dirty-dining/rails:v5
+        image: gcr.io/dirty-dining/rails:v6
         ports: 
         - containerPort: 3000
         env:

@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: sidekiq
-        image: gcr.io/dirty-dining/sidekiq:v3
+        image: gcr.io/dirty-dining/sidekiq:v4
         env:
         - name: APP_DATABASE_PASSWORD
           valueFrom:
