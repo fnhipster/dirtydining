@@ -34,8 +34,4 @@ class RestaurantsController < ApplicationController
 
     render json: results
 	end
-
-	def host 
-		render html: Socket.gethostname
-	end
 end
