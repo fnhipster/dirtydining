@@ -2,6 +2,7 @@ class Restaurant < ApplicationRecord
   has_many :inspections, foreign_key: :license_number, primary_key: :license_number
   geocoded_by :full_address, latitude: :location_latitude, longitude: :location_longitude 
   scope :to_geocode, -> { where(location_latitude: nil).where(location_longitude: nil) }
+  scope :with_geocode, -> { where.not(location_latitude: nil).where.not(location_longitude: nil) }
 
   def full_address
     [location_address, location_city, location_state, location_zipcode].compact.join(', ')

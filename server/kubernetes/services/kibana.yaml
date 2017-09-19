@@ -1,0 +1,21 @@
+kind: Service
+apiVersion: v1
+metadata:
+  # Unique key of the Service instance
+  name: kibana
+spec:
+  ports:
+  # Accept traffic sent to port 80
+  - name: http
+    port: 80
+    targetPort: 5601
+  selector:
+    # Loadbalance traffic across Pods matching
+    # this label selector
+    app: kibana
+  # Create an HA proxy in the cloud provider
+  # with an External IP address - *Only supported
+  # by some cloud providers*
+  type: LoadBalancer
+  #loadBalancerSourceRanges:
+    #- 2602:306:3a99:9a10:31b4:1ef6:7eb7:5124/128

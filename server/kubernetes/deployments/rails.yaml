@@ -1,0 +1,36 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: rails
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: rails
+    spec:
+      containers:
+      - name: rails
+        image: gcr.io/dirty-dining/rails:v6
+        ports: 
+        - containerPort: 3000
+        env:
+        - name: APP_DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef: 
+              name: dirty-dining
+              key: db_password
+        - name: GOOGLE_MAPS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: dirty-dining
+              key: google_maps_key
+        - name: SECRET_KEY_BASE
+          valueFrom:
+            secretKeyRef:
+              name: dirty-dining
+              key: secret_key_base
+        - name: MYSQL_HOST
+          value: mysql.default.svc.cluster.local
+        - name: RAILS_ENV
+          value: production

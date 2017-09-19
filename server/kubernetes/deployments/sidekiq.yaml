@@ -1,0 +1,34 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: sidekiq
+spec:
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: sidekiq
+    spec:
+      containers:
+      - name: sidekiq
+        image: gcr.io/dirty-dining/sidekiq:v4
+        env:
+        - name: APP_DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef: 
+              name: dirty-dining
+              key: db_password
+        - name: GOOGLE_MAPS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: dirty-dining
+              key: google_maps_key
+        - name: SECRET_KEY_BASE
+          valueFrom:
+            secretKeyRef:
+              name: dirty-dining
+              key: secret_key_base
+        - name: MYSQL_HOST
+          value: mysql.default.svc.cluster.local
+        - name: RAILS_ENV
+          value: production

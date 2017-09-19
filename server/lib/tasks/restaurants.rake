@@ -76,4 +76,11 @@ namespace :restaurant do
 			GeocodingWorker.perform_async(restaurant.id)
 		end
 	end 
+
+	desc "Create ElasticSearch jobs for Restaurants"
+	task :elasticsearch_jobs => :environment do |task_name, parameters|
+		Restaurant.with_geocode.find_each do |restaurant|
+			ElasticsearchWorker.perform_async(restaurant.id)
+		end
+	end 
 end
