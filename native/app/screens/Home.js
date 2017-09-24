@@ -1,12 +1,23 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react'
-import { View, StatusBar, Image } from 'react-native'
+import { AppRegistry, View, StatusBar, Image } from 'react-native'
 
 import { Container } from '../components/Container'
 import { HomeScreen } from '../components/HomeScreen'
-import { TextInputHome } from '../components/TextInput'
+import { SearchButton } from '../components/Button'
 
 
-class Home extends Component {
+export default class Home extends Component {
+  static propTypes = {
+    navigation: PropTypes.object,
+  };
+
+  handleSearchPress = () => {
+  // const { navigate } = this.props.navigation;
+    
+    this.props.navigation.navigate('Search');
+  }; 
+
   render() {
     return (
       <Container>
@@ -19,11 +30,11 @@ class Home extends Component {
           justifyContent: 'center',
           alignItems: 'center'}}>
           <HomeScreen />
-      <TextInputHome />          
+      <SearchButton onPress={this.handleSearchPress} />          
       </Image>
     </Container>
     );
   }
 }
 
-export default Home
+AppRegistry.registerComponent('Home', () => Home);

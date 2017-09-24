@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {View, Text, TextInput } from 'react-native'
+import React, { Component } from 'react'
+import { Button, Text, TextInput, View } from 'react-native'
 
 import styles from './styles'
 
@@ -14,9 +14,10 @@ export default class TextInputHome extends Component{
     render(){
         return (
             <View style={styles.container}>
-                <TextInput style={styles.input} 
-                    placeholder='search... '
-                />
+                <Button
+                    onPress={() => navigate('Search')}
+                    title="Search"
+          />
             </View>
         )
     }
